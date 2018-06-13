@@ -1,5 +1,8 @@
 require 'sneakers/metrics/logging_metrics'
+
 require 'airbrake/sneakers'
+
 Sneakers.configure(
-  metrics: Sneakers::Metrics::LoggingMetrics.new
+  amqp: ENV.fetch('AMQP_CONNECTION_STRING', 'amqp://localhost'),
+  metrics: Sneakers::Metrics::LoggingMetrics.new,
 )
