@@ -1,0 +1,14 @@
+version: '2'
+services:
+  rabbitmq:
+    image: rabbitmq:3.7
+  app:
+    build:
+      context: ./.docker-dev
+    depends_on:
+      - rabbitmq
+    environment:
+      - AMQP_CONNECTION_STRING=amqp://guest:guest@rabbitmq
+    volumes:
+      - ./:/app
+
